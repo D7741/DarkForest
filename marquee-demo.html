@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marquee — Isolated Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void-black: #05070D;
+    --deep-navy: #0B1530;
+    --star-white: #EDEFF3;
+    --silver: #B8C2CC;
+    --font-head: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'Share Tech Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--void-black);
+    color: var(--star-white);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    padding: 4rem 0;
+  }
+
+  .demo-label {
+    width: 100%;
+    max-width: 900px;
+    padding: 0 1.5rem;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver);
+    opacity: 0.6;
+    margin-bottom: -2.5rem;
+  }
+
+  /* ---------- Marquee component ---------- */
+
+  .marquee {
+    --marquee-duration: 24s;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    animation: marquee-scroll var(--marquee-duration) linear infinite;
+  }
+
+  .marquee[data-direction="reverse"] .marquee__track {
+    animation-name: marquee-scroll-reverse;
+  }
+
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @keyframes marquee-scroll-reverse {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+
+  .marquee__group {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+  }
+
+  .marquee__item {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 0 2.25rem;
+    font-family: var(--font-head);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--silver);
+    letter-spacing: 0.01em;
+  }
+
+  .marquee__item--dot::after {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    margin-left: 2.25rem;
+    background: var(--silver);
+    opacity: 0.4;
+    vertical-align: middle;
+  }
+
+  /* variant: mono/terminal styling for a second demo row */
+  .marquee--mono .marquee__item {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--star-white);
+    opacity: 0.85;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee__track {
+      animation: none;
+    }
+    .marquee__group[data-duplicate] {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-label">Default &middot; 24s &middot; forward</div>
+<div class="marquee" data-speed="24">
+  <div class="marquee__track">
+    <div class="marquee__group">
+      <span class="marquee__item marquee__item--dot">FIRST CONTACT</span>
+      <span class="marquee__item marquee__item--dot">CHAOTIC ERA</span>
+      <span class="marquee__item marquee__item--dot">STABLE ERA</span>
+      <span class="marquee__item marquee__item--dot">SOL-3</span>
+      <span class="marquee__item marquee__item--dot">TRISOLARIS</span>
+      <span class="marquee__item marquee__item--dot">ORION SPUR</span>
+    </div>
+    <div class="marquee__group" data-duplicate aria-hidden="true">
+      <span class="marquee__item marquee__item--dot">FIRST CONTACT</span>
+      <span class="marquee__item marquee__item--dot">CHAOTIC ERA</span>
+      <span class="marquee__item marquee__item--dot">STABLE ERA</span>
+      <span class="marquee__item marquee__item--dot">SOL-3</span>
+      <span class="marquee__item marquee__item--dot">TRISOLARIS</span>
+      <span class="marquee__item marquee__item--dot">ORION SPUR</span>
+    </div>
+  </div>
+</div>
+
+<div class="demo-label">Reverse direction &middot; 40s (slower)</div>
+<div class="marquee" data-direction="reverse" data-speed="40">
+  <div class="marquee__track">
+    <div class="marquee__group">
+      <span class="marquee__item">Three suns, no rules</span>
+      <span class="marquee__item">No fixed calendar</span>
+      <span class="marquee__item">Signal acquired</span>
+      <span class="marquee__item">We did not discard this one</span>
+    </div>
+    <div class="marquee__group" data-duplicate aria-hidden="true">
+      <span class="marquee__item">Three suns, no rules</span>
+      <span class="marquee__item">No fixed calendar</span>
+      <span class="marquee__item">Signal acquired</span>
+      <span class="marquee__item">We did not discard this one</span>
+    </div>
+  </div>
+</div>
+
+<div class="demo-label">Mono variant &middot; fast &middot; 12s</div>
+<div class="marquee marquee--mono" data-speed="12">
+  <div class="marquee__track">
+    <div class="marquee__group">
+      <span class="marquee__item">SOL-III / ORI-&lambda;</span>
+      <span class="marquee__item">8.2 kpc @ GC</span>
+      <span class="marquee__item">Z &asymp; +20.8 pc</span>
+      <span class="marquee__item">LOCAL GROUP // LANIAKEA</span>
+      <span class="marquee__item">42-OBS</span>
+    </div>
+    <div class="marquee__group" data-duplicate aria-hidden="true">
+      <span class="marquee__item">SOL-III / ORI-&lambda;</span>
+      <span class="marquee__item">8.2 kpc @ GC</span>
+      <span class="marquee__item">Z &asymp; +20.8 pc</span>
+      <span class="marquee__item">LOCAL GROUP // LANIAKEA</span>
+      <span class="marquee__item">42-OBS</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function initMarquees() {
+    document.querySelectorAll('.marquee[data-speed]').forEach((el) => {
+      const speed = parseFloat(el.dataset.speed);
+      if (!isNaN(speed)) el.style.setProperty('--marquee-duration', `${speed}s`);
+    });
+  })();
+</script>
+
+</body>
+</html>

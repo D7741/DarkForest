@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trisolaris Needs a Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+<canvas id="hero-shader-canvas" class="nebula-canvas" aria-hidden="true"></canvas>
+
+<main>
+  <section id="hero">
+    <span class="hero-badge">
+      <svg class="badge-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0 L9.2 6.8 L16 8 L9.2 9.2 L8 16 L6.8 9.2 L0 8 L6.8 6.8 Z"/></svg>
+      FIRST CONTACT &middot; SOL-3
+    </span>
+    <h1><span class="line">Trisolaris</span><br><span class="line">Needs a Home</span></h1>
+    <p class="subhead">A brief, honest history of why they're looking at Earth.</p>
+    <div class="scroll-hint">scroll to learn why ↓</div>
+  </section>
+
+  <div class="hairline"></div>
+
+  <section id="prologue">
+    <div class="panel" data-reveal>
+      <span class="era-label">Transmission Log &middot; Entry 1943</span>
+      <h2 data-decrypt>We have been watching for a long time.</h2>
+      <p>Three suns. No calendar. No mercy.</p>
+      <p>We do not send this signal lightly. Every world we have catalogued has been discarded for one reason or another. This one, we did not discard.</p>
+      <p>What follows is the record of why.</p>
+    </div>
+  </section>
+
+  <div class="hairline"></div>
+
+  <section id="backstory">
+    <div class="panel" data-reveal>
+      <span class="era-label">Chaotic Era</span>
+      <h2 data-decrypt>Three Suns, No Rules</h2>
+      <p>Trisolaris orbits three stars, not one. Their combined gravity is unpredictable — sometimes the planet drifts through a calm, single-sun summer, and sometimes all three converge and the surface boils or freezes within a season.</p>
+      <p>There is no way to build a calendar. There is no way to plan a harvest, a childhood, a civilization. Whole societies have been dehydrated into spores and rehydrated centuries later, hoping to wake up somewhere survivable.</p>
+      <span class="era-label">Stable Era</span>
+      <p>Occasionally, the suns align into a rhythm long enough to rebuild. It never lasts. It has never once lasted.</p>
+    </div>
+  </section>
+
+  <div class="hairline"></div>
+
+  <section id="sophon">
+    <div class="spotlight-card" id="sophon-card" data-reveal>
+      <div class="spotlight-glow" id="sophon-spotlight"></div>
+
+      <div class="card-copy">
+        <span class="era-label">Deployment Record &middot; Sophon Class</span>
+        <h2 data-decrypt>A Proton, Unfolded</h2>
+        <p>We cannot reach Sol-3 in time to matter. So we send something smaller: a proton, etched with circuitry across nine dimensions, folded down to a point and threaded through the void at the only speed that could arrive before you do.</p>
+        <p>Once it unfolds, it listens to everything. It blinds your instruments the instant they look too closely at the truth.</p>
+      </div>
+
+      <div class="card-visual">
+        <canvas id="sophon-canvas" aria-hidden="true"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <div class="hairline"></div>
+
+  <section id="ticker">
+    <div class="marquee marquee--mono" data-speed="26">
+      <div class="marquee__track">
+        <div class="marquee__group">
+          <span class="marquee__item">TARGET: EARTH</span>
+          <span class="marquee__item">POPULATION: HIGH</span>
+          <span class="marquee__item">ATMOSPHERE: BREATHABLE</span>
+          <span class="marquee__item">DEFENSE: MINIMAL</span>
+          <span class="marquee__item">SUNS: 1 (STABLE)</span>
+          <span class="marquee__item">STATUS: CATALOGUED</span>
+          <span class="marquee__item">SOL-III / ORI-&lambda;</span>
+          <span class="marquee__item">8.2 kpc @ GC</span>
+          <span class="marquee__item">LOCAL GROUP // LANIAKEA</span>
+        </div>
+        <div class="marquee__group" data-duplicate aria-hidden="true">
+          <span class="marquee__item">TARGET: EARTH</span>
+          <span class="marquee__item">POPULATION: HIGH</span>
+          <span class="marquee__item">ATMOSPHERE: BREATHABLE</span>
+          <span class="marquee__item">DEFENSE: MINIMAL</span>
+          <span class="marquee__item">SUNS: 1 (STABLE)</span>
+          <span class="marquee__item">STATUS: CATALOGUED</span>
+          <span class="marquee__item">SOL-III / ORI-&lambda;</span>
+          <span class="marquee__item">8.2 kpc @ GC</span>
+          <span class="marquee__item">LOCAL GROUP // LANIAKEA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hairline"></div>
+
+  <section id="chat">
+    <div class="chat-stack">
+      <div class="chatbox" id="chatbox-1" data-reveal>
+        <div class="uplink-ring"></div>
+        <div class="uplink-mask"></div>
+        <div class="uplink-sweep"></div>
+        <div class="uplink-scanline"></div>
+        <span class="hud-corner hud-corner--tl"></span>
+        <span class="hud-corner hud-corner--tr"></span>
+        <span class="hud-corner hud-corner--bl"></span>
+        <span class="hud-corner hud-corner--br"></span>
+        <div class="spotlight-glow" id="chatbox-1-spotlight" aria-hidden="true"></div>
+        <div class="uplink-content">
+        <div class="chat-header">
+          <div class="waveform" aria-hidden="true">
+            <span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span>
+          </div>
+          <span class="chat-label">TRISOLARAN_UPLINK</span>
+        </div>
+
+        <div class="chat-body">
+          <p class="chat-message"><span class="typed" data-message="chat-1"></span><span class="cursor">&#9608;</span></p>
+        </div>
+
+        <div class="record" id="record">
+          <div class="record-title">HUMAN RACE</div>
+          <div class="record-sub">BIOLOGICAL CIVILIZATION // SOL-3</div>
+
+          <div class="record-field">
+            <span class="record-label">Registered Domicile</span>
+            <span class="record-value">Earth</span>
+            <span class="record-value muted">Sol System · Orion Spur</span>
+          </div>
+
+          <div class="record-field">
+            <span class="record-label">Locator</span>
+            <span class="record-value">SOL-III / ORI-&lambda;</span>
+            <span class="record-value muted">8.2 kpc @ GC</span>
+            <span class="record-value muted">Z &asymp; +20.8 pc</span>
+          </div>
+
+          <div class="record-field">
+            <span class="record-label">Region</span>
+            <span class="record-value">LOCAL GROUP // LANIAKEA</span>
+          </div>
+
+          <div class="record-field">
+            <span class="record-label">Universal Post</span>
+            <span class="record-value">42-OBS</span>
+          </div>
+        </div>
+
+        <button type="button" class="support-btn" id="confirm-btn">&gt; CONFIRM_DOMICILE.exe</button>
+
+        <div class="negotiate" id="negotiate">
+          <div class="field">
+            <label class="record-label" for="reason-input">Why should we let you stay?</label>
+            <input type="text" id="reason-input" class="term-input" maxlength="120" placeholder="type your reason...">
+          </div>
+          <div class="field">
+            <label class="record-label" for="demand-input">One demand, before you take over</label>
+            <input type="text" id="demand-input" class="term-input" maxlength="120" placeholder="e.g. 20-hour work week, same pay">
+          </div>
+          <button type="button" class="support-btn" id="transmit-btn">&gt; TRANSMIT.exe</button>
+
+          <div class="exchange" id="exchange">
+            <p class="human-line" id="human-line"></p>
+            <p class="chat-message"><span class="typed" id="typed-reply"></span><span class="cursor">&#9608;</span></p>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="chatbox" id="chatbox-2">
+        <div class="uplink-ring"></div>
+        <div class="uplink-mask"></div>
+        <div class="uplink-sweep"></div>
+        <div class="uplink-scanline"></div>
+        <span class="hud-corner hud-corner--tl"></span>
+        <span class="hud-corner hud-corner--tr"></span>
+        <span class="hud-corner hud-corner--bl"></span>
+        <span class="hud-corner hud-corner--br"></span>
+        <div class="spotlight-glow" id="chatbox-2-spotlight" aria-hidden="true"></div>
+        <div class="uplink-content">
+        <div class="chat-header">
+          <div class="waveform" aria-hidden="true">
+            <span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span><span class="wf-bar"></span>
+          </div>
+          <span class="chat-label">TRISOLARAN_UPLINK</span>
+        </div>
+
+        <div class="chat-body">
+          <p class="chat-message"><span class="typed" data-message="chat-2"></span><span class="cursor">&#9608;</span></p>
+        </div>
+
+        <button type="button" class="support-btn" id="donate-btn">&gt; SUPPORT_RELOCATION.exe</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
