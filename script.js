@@ -512,6 +512,8 @@ void main(void){
     transmitBtn.disabled = true;
     transmitBtn.textContent = '> TRANSMITTED';
 
+    if (window.__incrementTransmissionCount) window.__incrementTransmissionCount();
+
     exchange.classList.add('is-visible');
 
     const humanText = `> REASON: "${reason}"\n> DEMAND: "${demand}"`;
@@ -539,6 +541,65 @@ void main(void){
       }
     });
   });
+})();
+
+/* ---------- Transmission counter (simulated, frontend-only) ----------
+   Cosmetic counter for the fictional site. Stored per-visitor in
+   localStorage — not a real shared count and makes no network request.
+   Between visits it grows by a small, time-based simulated amount; the
+   current visitor's own successful transmission adds exactly +1. */
+
+(function transmissionCounter() {
+  const COUNT_KEY = 'df_transmission_count';
+  const TS_KEY = 'df_transmission_ts';
+  const MIN_START = 18000;
+  const MAX_START = 30000;
+  const SECONDS_PER_TRANSMISSION = 40;
+  const MAX_GROWTH_PER_VISIT = 1500;
+
+  const valueEl = document.getElementById('transmission-counter-value');
+  if (!valueEl) return;
+
+  function formatCount(n) {
+    return Math.round(n).toLocaleString('en-US');
+  }
+
+  function save(count, ts) {
+    try {
+      localStorage.setItem(COUNT_KEY, String(count));
+      localStorage.setItem(TS_KEY, String(ts));
+    } catch (e) {}
+  }
+
+  let count = 0;
+  let storedTs = 0;
+  try {
+    count = Number(localStorage.getItem(COUNT_KEY));
+    storedTs = Number(localStorage.getItem(TS_KEY));
+  } catch (e) {}
+
+  const now = Date.now();
+
+  if (!count || !storedTs) {
+    count = Math.floor(MIN_START + Math.random() * (MAX_START - MIN_START));
+  } else {
+    const elapsedSeconds = Math.max(0, (now - storedTs) / 1000);
+    const expected = elapsedSeconds / SECONDS_PER_TRANSMISSION;
+    const jitter = 0.7 + Math.random() * 0.6;
+    count += Math.min(Math.round(expected * jitter), MAX_GROWTH_PER_VISIT);
+  }
+
+  save(count, now);
+  valueEl.textContent = formatCount(count);
+
+  let incremented = false;
+  window.__incrementTransmissionCount = function () {
+    if (incremented) return;
+    incremented = true;
+    count += 1;
+    save(count, Date.now());
+    valueEl.textContent = formatCount(count);
+  };
 })();
 
 /* ---------- Waveform ----------

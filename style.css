@@ -416,6 +416,20 @@ section {
   padding: 1.75rem 0;
 }
 
+.transmission-counter {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--silver);
+  margin: 0 0 2rem;
+}
+
+.transmission-counter #transmission-counter-value {
+  color: var(--star-white);
+}
+
 .marquee {
   --marquee-duration: 24s;
   position: relative;
