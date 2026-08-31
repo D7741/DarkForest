@@ -880,6 +880,10 @@ section {
   color: var(--silver);
 }
 
+a.support-btn {
+  display: inline-block;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .chatbox {
     transition: opacity 0.4s ease;
